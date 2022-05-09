@@ -1,0 +1,67 @@
+-- OUTLET
+    -> #outlet_number
+    -> address
+    -> city
+    -> state
+    -> zip
+    -> phone
+
+-- EMPLOYEE
+    -> #outlet_number
+    -> #emp_number
+    -> emp_name
+
+-- PRODUCT
+    -> #product_code
+    -> artist
+    -> title
+    -> cost
+    -> price
+
+-- CUSTOMER
+    -> #customer_id
+    -> customer_name
+    -> address
+    -> city
+    -> state
+    -> zip
+    -> phone
+
+-- MANAGER
+    -> #outlet_number
+    -> #emp_number
+
+-- INVENTORY
+    -> #outlet_number
+    -> #product_code
+    -> quantity
+
+-- SALES
+    -> #outlet_number
+    -> #emp_number
+    -> #customer_id
+    -> #product_code
+    -> sale_date
+    -> sale_time
+    -> quantity
+
+-- RETURNS
+    -> #outlet_number
+    -> #product_code
+    -> #customer_id
+    -> return_date
+    -> return_time
+    -> quantity
+    -> reason
+
+
+
+
+
+
+
+
+
+
+
+
