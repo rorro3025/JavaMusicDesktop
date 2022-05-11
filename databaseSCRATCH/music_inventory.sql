@@ -2,7 +2,7 @@ create table inventory
 (
     outlet_number int                        not null,
     product_code  int                        not null,
-    quantity      decimal(4, 2) default 0.00 not null,
+    quantity      int(3) default 0 not null,
     constraint inven_out_fk
         foreign key (outlet_number) references outlets (outlet_number)
             on update cascade on delete cascade,

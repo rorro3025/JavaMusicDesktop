@@ -1,16 +1,22 @@
 import com.app.database.PersonDAOImp;
+import com.app.database.ProductDAOImp;
 import com.app.models.Customer;
 import com.app.models.Employee;
+import com.app.models.Product;
 
 import java.sql.SQLException;
 
 public class main {
-    public static void main(String [] rodrigo) throws SQLException {
+    public static void main(String[] rodrigo) throws SQLException {
         PersonDAOImp db = new PersonDAOImp();
         Customer customer = db.getOneCustomerInfo(5);
-        if(customer != null) System.out.println(customer.getName() + " and phoneNumber: "+ customer.getPhone());
+        if (customer != null) System.out.println(customer.getName() + " and phoneNumber: " + customer.getPhone());
         Employee employee = db.getOneEmployeeInfo(3);
-        if(employee != null) System.out.println(employee.getName()+" is working in the outlet n° "+ employee.getOutletNumber());
+        if (employee != null)
+            System.out.println(employee.getName() + " is working in the outlet n° " + employee.getOutletNumber());
+        ProductDAOImp productDB = new ProductDAOImp();
+        Product product = productDB.getProductInfo(3);
+        if (product != null) System.out.println(product.getId() + " - " + product.getTitle().toUpperCase());
         // CREATE A CUSTOMER
         /*
         Customer newCustomer = new Customer();

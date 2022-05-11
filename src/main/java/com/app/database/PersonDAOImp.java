@@ -6,12 +6,13 @@ import com.app.models.Employee;
 import java.sql.*;
 
 public class PersonDAOImp implements PersonDAO {
+    Utils util = new Utils();
     @Override
     public Customer getOneCustomerInfo(int id) throws SQLException {
         String query = "SELECT * FROM customers where customer_id = ?";
         ResultSet rs = null;
         try (
-                Connection conn = getConnection();
+                Connection conn = util.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)
         ) {
             ps.setInt(1, id);
@@ -30,7 +31,7 @@ public class PersonDAOImp implements PersonDAO {
             }
             return customer;
         } catch (SQLException e) {
-            processException(e);
+            util.processException(e);
             return null;
         } finally {
             if (rs != null) rs.close();
@@ -41,7 +42,7 @@ public class PersonDAOImp implements PersonDAO {
     public void saveCustomer(Customer customer) throws SQLException {
         String query = "insert into customers (customer_name, address,city,state,zip,phone) values (?,?,?,?,?,?)";
         try (
-                Connection conn = getConnection();
+                Connection conn = util.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query);
         ) {
             ps.setString(1, customer.getName());
@@ -57,7 +58,7 @@ public class PersonDAOImp implements PersonDAO {
                 System.out.print("No rows affected");
             }
         } catch (SQLException e) {
-            processException(e);
+            util.processException(e);
         }
 
     }
@@ -66,7 +67,7 @@ public class PersonDAOImp implements PersonDAO {
     public void deleteCostumer(int id) throws SQLException {
         String query = "DELETE FROM customers where customer_id = ?";
         try (
-                Connection conn = getConnection();
+                Connection conn = util.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)
         ) {
             ps.setInt(1, id);
@@ -76,7 +77,7 @@ public class PersonDAOImp implements PersonDAO {
                 System.out.println("No rows affected");
             }
         } catch (SQLException e) {
-            processException(e);
+            util.processException(e);
         }
     }
 
@@ -90,7 +91,7 @@ public class PersonDAOImp implements PersonDAO {
         String query = "SELECT * FROM employees where emp_number = ?";
         ResultSet rs = null;
         try (
-                Connection conn = getConnection();
+                Connection conn = util.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)
         ) {
             ps.setInt(1, id);
@@ -105,7 +106,7 @@ public class PersonDAOImp implements PersonDAO {
             }
             return employee;
         } catch (SQLException e) {
-            processException(e);
+            util.processException(e);
             return null;
         } finally {
             if (rs != null) rs.close();
@@ -116,7 +117,7 @@ public class PersonDAOImp implements PersonDAO {
     public void saveEmployee(Employee emp) throws SQLException {
         String query = "insert into employees (outlet_number, emp_name) values (?,?)";
         try (
-                Connection conn = getConnection();
+                Connection conn = util.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query);
         ) {
             ps.setInt(1, emp.getOutletNumber());
@@ -127,7 +128,7 @@ public class PersonDAOImp implements PersonDAO {
                 System.out.print("No rows affected");
             }
         } catch (SQLException e) {
-            processException(e);
+            util.processException(e);
         }
     }
 
@@ -135,7 +136,7 @@ public class PersonDAOImp implements PersonDAO {
     public void deleteEmployee(int id) throws SQLException {
         String query = "DELETE FROM employees where emp_number = ?";
         try (
-                Connection conn = getConnection();
+                Connection conn = util.getConnection();
                 PreparedStatement ps = conn.prepareStatement(query)
         ) {
             ps.setInt(1, id);
@@ -145,7 +146,7 @@ public class PersonDAOImp implements PersonDAO {
                 System.out.println("No rows affected");
             }
         } catch (SQLException e) {
-            processException(e);
+            util.processException(e);
         }
     }
 
@@ -154,14 +155,4 @@ public class PersonDAOImp implements PersonDAO {
         String query = "";
     }
 
-    private static Connection getConnection() throws SQLException {
-        String USER = "root";
-        String PASSWORD = "admin";
-        String URI = "jdbc:mysql://localhost:3306/music";
-        return DriverManager.getConnection(URI, USER, PASSWORD);
-    }
-
-    private static void processException(SQLException e) {
-        System.out.println("SQL Error " + e);
-    }
 }

@@ -2,7 +2,7 @@ create table customers
 (
     customer_id   int auto_increment
         primary key,
-    customer_name int          not null,
+    customer_name varchar(255) not null,
     address       varchar(100) null,
     city          varchar(30)  null,
     state         varchar(30)  null,

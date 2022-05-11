@@ -3,7 +3,7 @@ create table employees
     outlet_number int,
     emp_number    int not null
         primary key,
-    emp_name      int null,
+    emp_name      varchar(200) null,
     constraint emp_number_UNIQUE
         unique (emp_number),
     constraint outlet_fk
@@ -14,7 +14,7 @@ create index outlet_fk_idx
     on employees (outlet_number);
 
 alter table employees
-    modify outlet_number int auto_increment;
+    modify emp_number int auto_increment;
 
 INSERT INTO music.employees (outlet_number, emp_number, emp_name) VALUES (1, 1, 'Daniel Trujillo');
 INSERT INTO music.employees (outlet_number, emp_number, emp_name) VALUES (2, 2, 'Rodrigo Hernandez');

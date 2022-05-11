@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 public class Utils {
     public Connection getConnection() throws SQLException {
-        String USER = "root";
-        String PASSWORD = "admin";
+        String USER = "admin";
+        String PASSWORD = "admin1234";
         String URI = "jdbc:mysql://localhost:3306/music";
         return DriverManager.getConnection(URI, USER, PASSWORD);
     }

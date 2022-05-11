@@ -4,8 +4,8 @@ create table products
         primary key,
     artist       varchar(30)                not null,
     title        varchar(30)                not null,
-    cost         decimal(4, 2) default 0.00 not null,
-    sale_price   decimal(4, 2) default 0.00 not null,
+    cost         decimal(6, 2) default 0.00 not null,
+    sale_price   decimal(6, 2) default 0.00 not null,
     constraint products_product_code_uindex
         unique (product_code)
 );
