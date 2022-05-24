@@ -19,4 +19,6 @@ public class Product {
     @Setter
     @Getter
     private float sale_price;
+    @Getter @Setter
+    private int quantity;
 }

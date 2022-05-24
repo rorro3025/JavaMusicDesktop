@@ -7,6 +7,7 @@ import java.sql.*;
 
 public class PersonDAOImp implements PersonDAO {
     Utils util = new Utils();
+
     @Override
     public Customer getOneCustomerInfo(int id) throws SQLException {
         String query = "SELECT * FROM customers where customer_id = ?";
@@ -83,7 +84,25 @@ public class PersonDAOImp implements PersonDAO {
 
     @Override
     public void updateCustomer(Customer customer) throws SQLException {
-        String query = "";
+        String query = "update customers set customer_name = ?,address = ?,city = ?,state = ?,zip = ?,phone = ? where customer_id = ?";
+        try (
+                Connection conn = util.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+        ) {
+            ps.setString(1, customer.getName());
+            ps.setString(2, customer.getAddress());
+            ps.setString(3, customer.getCity());
+            ps.setString(4, customer.getState());
+            ps.setInt(5, customer.getZip());
+            ps.setString(6, customer.getPhone());
+            if (ps.executeUpdate() == 1) {
+                System.out.println("user updated");
+            } else {
+                System.out.println("No rows affected");
+            }
+        } catch (SQLException e) {
+            util.processException(e);
+        }
     }
 
     @Override
@@ -152,7 +171,21 @@ public class PersonDAOImp implements PersonDAO {
 
     @Override
     public void updateEmployee(Employee employee) throws SQLException {
-        String query = "";
+        String query = "UPDATE employees SET outlet_number = ?, emp_name = ? WHERE emp_number = ?";
+        try (
+                Connection conn = util.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query)
+        ) {
+            ps.setInt(1, employee.getOutletNumber());
+            ps.setString(2, employee.getName());
+            ps.setInt(3, employee.getId());
+            if (ps.executeUpdate() == 1) {
+                System.out.println("user updated");
+            } else {
+                System.out.println("No rows affected");
+            }
+        } catch (SQLException e) {
+            util.processException(e);
+        }
     }
-
 }

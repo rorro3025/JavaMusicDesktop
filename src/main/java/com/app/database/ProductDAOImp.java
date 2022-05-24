@@ -87,10 +87,10 @@ public class ProductDAOImp implements ProductDAO {
             ps.setString(2, product.getTitle());
             ps.setFloat(3, product.getCost());
             ps.setFloat(4, product.getSale_price());
-            ps.setInt(5,product.getId());
-            if(ps.executeUpdate() == 1){
+            ps.setInt(5, product.getId());
+            if (ps.executeUpdate() == 1) {
                 System.out.println("Product updated");
-            }else{
+            } else {
                 System.out.println("NO ROWS AFFECTED");
             }
         }
